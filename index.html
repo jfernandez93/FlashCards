@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InsightHub Skit Flash Cards</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>InsightHub Skit Flash Cards</h1>
+      <p class="subtitle">
+        Pick your character, rehearse your lines, and see the other character's next line.
+      </p>
+
+      <section class="panel" id="setup-panel">
+        <label for="character-select">Choose your character</label>
+        <select id="character-select">
+          <option value="">Loading characters...</option>
+        </select>
+        <button id="start-btn" disabled>Start Practice</button>
+        <p id="load-error" class="error" hidden></p>
+      </section>
+
+      <section class="panel" id="practice-panel" hidden>
+        <p class="progress" id="progress-text"></p>
+        <p class="label">Prompt context</p>
+        <p class="context" id="context-text"></p>
+
+        <label for="line-input">Your next line</label>
+        <textarea id="line-input" rows="4" placeholder="Type your line here..."></textarea>
+
+        <div class="actions">
+          <button id="check-btn">Check Line</button>
+          <button id="next-btn" hidden>Next Prompt</button>
+          <button id="restart-btn" hidden>Practice Again</button>
+        </div>
+
+        <div id="result-box" class="result" hidden>
+          <p class="label">Expected line</p>
+          <p id="expected-line"></p>
+          <p class="label">Other character's next line</p>
+          <p id="other-line"></p>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+  </html>
