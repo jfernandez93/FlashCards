@@ -10,8 +10,7 @@ const setupPanel = document.getElementById("setup-panel");
 const practicePanel = document.getElementById("practice-panel");
 const progressText = document.getElementById("progress-text");
 const contextText = document.getElementById("context-text");
-const lineInput = document.getElementById("line-input");
-const checkBtn = document.getElementById("check-btn");
+const readyBtn = document.getElementById("ready-btn");
 const nextBtn = document.getElementById("next-btn");
 const restartBtn = document.getElementById("restart-btn");
 const resultBox = document.getElementById("result-box");
@@ -92,9 +91,7 @@ function updatePromptView() {
   if (done) {
     progressText.textContent = `Completed ${promptIndices.length} of ${promptIndices.length} lines.`;
     contextText.textContent = "Practice complete.";
-    lineInput.value = "";
-    lineInput.disabled = true;
-    checkBtn.hidden = true;
+    readyBtn.hidden = true;
     nextBtn.hidden = true;
     restartBtn.hidden = false;
     resultBox.hidden = true;
@@ -104,10 +101,7 @@ function updatePromptView() {
   const index = promptIndices[promptCursor];
   progressText.textContent = `Line ${promptCursor + 1} of ${promptIndices.length}`;
   contextText.textContent = nearestContext(index);
-  lineInput.value = "";
-  lineInput.disabled = false;
-  lineInput.focus();
-  checkBtn.hidden = false;
+  readyBtn.hidden = false;
   nextBtn.hidden = true;
   restartBtn.hidden = true;
   resultBox.hidden = true;
@@ -124,7 +118,7 @@ function startPractice() {
   updatePromptView();
 }
 
-function checkCurrentLine() {
+function showCurrentLine() {
   const index = promptIndices[promptCursor];
   const current = scriptLines[index];
 
@@ -132,8 +126,7 @@ function checkCurrentLine() {
   otherLine.textContent = nextOtherCharacterLine(index, selectedCharacter);
   resultBox.hidden = false;
 
-  lineInput.disabled = true;
-  checkBtn.hidden = true;
+  readyBtn.hidden = true;
   nextBtn.hidden = false;
 }
 
@@ -154,7 +147,7 @@ characterSelect.addEventListener("change", () => {
 });
 
 startBtn.addEventListener("click", startPractice);
-checkBtn.addEventListener("click", checkCurrentLine);
+readyBtn.addEventListener("click", showCurrentLine);
 nextBtn.addEventListener("click", advancePrompt);
 restartBtn.addEventListener("click", resetToSetup);
 
